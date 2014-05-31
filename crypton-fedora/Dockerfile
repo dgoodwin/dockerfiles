@@ -46,14 +46,15 @@ EXPOSE 22
 ADD supervisord.ini /etc/supervisord.d/supervisord.ini
 
 
-# Setup crypton:
+# Prep to build crypton:
 RUN yum install -y nodejs npm redis make postgresql-devel
 
 WORKDIR /crypton
-RUN git clone https://github.com/dgoodwin/crypton.git
-#&& cd crypton && git checkout fedora-docker
+RUN git clone https://github.com/dgoodwin/crypton.git && cd crypton && git checkout fedora-docker
+#RUN cd /crypton/crypton && make && cd server && npm link
+EXPOSE 443
 
-RUN useradd -G tty root
+RUN usermod -a -G tty root
 
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
