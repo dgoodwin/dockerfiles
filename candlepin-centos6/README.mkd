@@ -1,0 +1,7 @@
+Simple container to deploy Candlepin from latest published public rpms at http://repos.fedorapeople.org/repos/candlepin/candlepin/epel-6/.
+
+PostgreSQL and SSH are installed and running once launched. root ssh password is printed on startup.
+
+"docker ps -a" to find ports, your candlepin server should respond to:
+
+curl -k https://localhost:PORT/candlepin/status
